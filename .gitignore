@@ -18,3 +18,12 @@ backend/output/
 
 # VS Code (optional)
 .vscode/
+
+# Models
+backend/models/
+*.pkl
+
+# Datasets
+Datasets/
+*.xlsx
+*.ipynb
