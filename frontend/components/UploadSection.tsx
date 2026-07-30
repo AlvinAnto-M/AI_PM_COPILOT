@@ -40,7 +40,7 @@ export default function UploadSection() {
         },
       });
 
-      console.log(res.data);
+    
 
       alert(
         `Analysis completed!\n\nRows Processed: ${res.data.rows_processed}`

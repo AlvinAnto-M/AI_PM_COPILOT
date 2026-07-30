@@ -27,7 +27,8 @@ export default function ClusterList({
       try {
         const res = await api.get("/clusters");
 
-        setClusters(res.data);
+
+        setClusters(Array.isArray(res.data) ? res.data : []);
 
         // Automatically select the first cluster
         if (res.data.length > 0 && selected === null) {
@@ -41,9 +42,13 @@ export default function ClusterList({
     fetchClusters();
   }, []);
 
-  const filteredClusters = clusters.filter((cluster) =>
-    cluster.theme.toLowerCase().includes(search.toLowerCase())
-  );
+
+
+const filteredClusters = Array.isArray(clusters)
+  ? clusters.filter((cluster) =>
+      cluster.theme.toLowerCase().includes(search.toLowerCase())
+    )
+  : [];
 
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-slate-200">

@@ -4,8 +4,11 @@ from .preprocessing import preprocess_dataframe
 from .embedding import generate_embeddings
 from .clustering import train_kmeans, save_model
 from .themes import extract_themes
+from .priority import compute_priority
 from .trend import generate_trend_analysis
 from . import storage
+
+
 
 
 def analyze_feedback(df: pd.DataFrame):
@@ -39,6 +42,13 @@ def analyze_feedback(df: pd.DataFrame):
     # -------------------------
 
     df, cluster_labels = extract_themes(df)
+    
+    
+    # -------------------------
+    # AI Priority Prediction
+    # -------------------------
+
+    df = compute_priority(df)
 
     # -------------------------
     # Trend Analysis
@@ -50,11 +60,16 @@ def analyze_feedback(df: pd.DataFrame):
     # Store globally
     # -------------------------
 
-    storage.processed_df = df
+    # -------------------------
+# Store globally
+# -------------------------
 
-    storage.cluster_labels = cluster_labels
-
-    storage.trends = trends
+    storage.save_analysis(
+        df,
+        cluster_labels,
+        trends,
+        {}
+    )
 
     # -------------------------
     # Return only summary

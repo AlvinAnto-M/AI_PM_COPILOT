@@ -50,8 +50,7 @@ export default function SummaryCards() {
       try {
         const response = await api.get("/dashboard");
 
-        console.log("Dashboard Response");
-        console.log(response.data);
+        
 
         setDashboard(response.data);
       } catch (error) {
