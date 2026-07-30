@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import api from "@/lib/api";
 import {
@@ -17,8 +16,6 @@ interface Issue {
   status: string;
   product: string;
   category: string;
-  complexity: number;
-  customer_score: number;
   escalated: boolean;
 }
 
@@ -52,10 +49,11 @@ export default function DetailPanel({
         setLoading(true);
 
         const res = await api.get(`/cluster/${clusterId}`);
+        
 
-        console.log("Cluster Details:", res.data);
-
-        setCluster(res.data);
+        if (res.data.priority_breakdown) {
+    setCluster(res.data);
+}
       } catch (err) {
         console.error(err);
       } finally {
@@ -146,7 +144,7 @@ export default function DetailPanel({
               </div>
 
               <span className="font-bold">
-                {cluster.priority_breakdown.High}
+                {cluster.priority_breakdown?.High ?? 0}
               </span>
 
             </div>
@@ -162,7 +160,7 @@ export default function DetailPanel({
               </div>
 
               <span className="font-bold">
-                {cluster.priority_breakdown.Medium}
+                {cluster.priority_breakdown?.Medium ?? 0}
               </span>
 
             </div>
@@ -178,7 +176,7 @@ export default function DetailPanel({
               </div>
 
               <span className="font-bold">
-                {cluster.priority_breakdown.Low}
+                {cluster.priority_breakdown?.Low ?? 0}
               </span>
 
             </div>

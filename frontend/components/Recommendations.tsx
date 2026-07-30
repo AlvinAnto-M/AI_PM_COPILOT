@@ -32,12 +32,19 @@ export default function Recommendations() {
     async function loadDashboard() {
       try {
         const res = await api.get("/dashboard");
-        const dashboard: DashboardData = res.data;
+        const dashboard = res.data;
+
+        if (!dashboard.trends) {
+            console.log("Dashboard Response:", dashboard);
+            return;
+        }
 
         const recs: Recommendation[] = [];
 
         // Highest theme
-        const topTheme = Object.entries(dashboard.trends.top_themes)[0];
+        const topTheme = Object.entries(
+    dashboard.trends?.top_themes ?? {}
+)[0];
 
         if (topTheme) {
           recs.push({
@@ -50,7 +57,7 @@ export default function Recommendations() {
 
         // Highest product
         const topProduct = Object.entries(
-          dashboard.trends.top_products
+          dashboard.trends?.top_products ?? {}
         )[0];
 
         if (topProduct) {
@@ -64,7 +71,7 @@ export default function Recommendations() {
 
         // Urgent Issues
         const urgent =
-          dashboard.trends.priority_distribution["Urgent"];
+          dashboard.trends?.priority_distribution ?? {}
 
         if (urgent) {
           recs.push({

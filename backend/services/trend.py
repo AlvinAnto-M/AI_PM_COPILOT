@@ -9,12 +9,14 @@ def generate_trend_analysis(df: pd.DataFrame):
     # ----------------------------------------
     # Cluster Distribution
     # ----------------------------------------
-    cluster_distribution = (
-        df["cluster"]
+    cluster_distribution = {
+    int(k): int(v)
+    for k, v in df["cluster"]
         .value_counts()
         .sort_index()
         .to_dict()
-    )
+        .items()
+    }
 
     # ----------------------------------------
     # Theme Distribution
@@ -45,7 +47,7 @@ def generate_trend_analysis(df: pd.DataFrame):
 
     # ----------------------------------------
     # Top 5 Themes
-    # ----------------------------------------
+    # ------------------s----------------------
     top_themes = (
         df["theme"]
         .value_counts()
