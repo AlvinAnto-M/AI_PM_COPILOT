@@ -6,7 +6,10 @@ import { ChevronRight, Search, Layers3 } from "lucide-react";
 
 interface Cluster {
   id: number;
+  cluster_id: number;
+  name: string;
   theme: string;
+  feedback_count: number;
   issue_count: number;
 }
 
@@ -27,37 +30,49 @@ export default function ClusterList({
       try {
         const res = await api.get("/clusters");
 
+        console.log("Clusters API response:", res.data);
 
-        setClusters(Array.isArray(res.data) ? res.data : []);
+        const data = res.data?.clusters;
 
-        // Automatically select the first cluster
-        if (res.data.length > 0 && selected === null) {
-          onSelect(res.data[0].id);
+        if (Array.isArray(data)) {
+          setClusters(data);
+
+          // Select first cluster only when nothing is selected
+          if (data.length > 0 && selected === null) {
+            onSelect(data[0].id);
+          }
+        } else {
+          setClusters([]);
         }
-      } catch (err) {
-        console.error("Failed to load clusters:", err);
+      } catch (error) {
+        console.error("Failed to load clusters:", error);
+        setClusters([]);
       }
     }
 
     fetchClusters();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const filteredClusters = clusters.filter((cluster) => {
+    const searchText = search.toLowerCase();
 
-
-const filteredClusters = Array.isArray(clusters)
-  ? clusters.filter((cluster) =>
-      cluster.theme.toLowerCase().includes(search.toLowerCase())
-    )
-  : [];
+    return (
+      cluster.name?.toLowerCase().includes(searchText) ||
+      cluster.theme?.toLowerCase().includes(searchText)
+    );
+  });
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-slate-200">
+    <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
 
       {/* Header */}
       <div className="p-6 border-b">
 
         <div className="flex items-center gap-2 mb-4">
           <Layers3 className="text-blue-600" />
+
           <h2 className="text-2xl font-bold">
             Issue Clusters
           </h2>
@@ -108,19 +123,23 @@ const filteredClusters = Array.isArray(clusters)
 
               <div className="flex justify-between items-center">
 
-                <div>
+                <div className="min-w-0">
 
+                  {/* Cluster Name */}
                   <h3 className="font-semibold text-lg capitalize">
-                    {cluster.theme}
+                    {cluster.name}
                   </h3>
 
+                  {/* Issue Count */}
                   <p className="text-slate-500 text-sm mt-1">
                     {cluster.issue_count} Issues
                   </p>
 
                 </div>
 
-                <ChevronRight className="text-slate-400" />
+                <ChevronRight
+                  className="text-slate-400 flex-shrink-0"
+                />
 
               </div>
 

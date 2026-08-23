@@ -27,3 +27,8 @@ backend/models/
 Datasets/
 *.xlsx
 *.ipynb
+# Backend Node.js dependencies
+backend/node_modules/
+
+# Backend Node.js dependencies
+backend/node_modules/
