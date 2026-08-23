@@ -6,10 +6,11 @@ import {
   Target,
   MessageSquare,
   ArrowRight,
-  CalendarDays,
+  Lightbulb,
+  Map,
 } from "lucide-react";
 
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface ProductModulesProps {
   onOpenModule?: (module: string) => void;
@@ -18,8 +19,6 @@ interface ProductModulesProps {
 export default function ProductModules({
   onOpenModule,
 }: ProductModulesProps) {
-  const router = useRouter();
-
   const modules = [
     {
       id: "chat",
@@ -27,6 +26,7 @@ export default function ProductModules({
       title: "AI Chat Assistant",
       description:
         "Ask questions about customer feedback, trends, clusters, and product insights.",
+      route: "/",
     },
 
     {
@@ -35,6 +35,7 @@ export default function ProductModules({
       title: "PRD Generator",
       description:
         "Generate structured Product Requirement Documents using customer feedback and Generative AI.",
+      route: "/prd-generator",
     },
 
     {
@@ -43,6 +44,7 @@ export default function ProductModules({
       title: "User Stories & Acceptance Criteria",
       description:
         "Automatically generate user stories and detailed acceptance criteria from identified product issues.",
+      route: "/user-stories",
     },
 
     {
@@ -51,40 +53,34 @@ export default function ProductModules({
       title: "Feature Prioritization",
       description:
         "Prioritize product features using RICE, MoSCoW, and configurable weighted scoring frameworks.",
+      route: "/prioritization",
     },
 
     {
       id: "roadmap",
-      icon: CalendarDays,
+      icon: Map,
       title: "Product Roadmap",
       description:
-        "Build an AI-powered product roadmap by organizing prioritized initiatives into immediate, near-term, and later milestones.",
+        "Create an evidence-based product roadmap by organizing prioritized initiatives into milestones.",
+      route: "/roadmap",
+    },
+
+    {
+      id: "strategy",
+      icon: Lightbulb,
+      title: "Product Strategy Reports",
+      description:
+        "Generate evidence-based product strategy reports for individual customer issue clusters.",
+      route: "/strategy",
     },
   ];
-
-  const handleOpenModule = (module: string) => {
-    // --------------------------------------------------
-    // Product Roadmap
-    // --------------------------------------------------
-
-    if (module === "roadmap") {
-      router.push("/roadmap");
-      return;
-    }
-
-    // --------------------------------------------------
-    // Other modules
-    // --------------------------------------------------
-
-    onOpenModule?.(module);
-  };
 
   return (
     <section className="mt-8">
       {/* Header */}
 
-      <div className="mb-5">
-        <h2 className="text-2xl font-bold text-slate-800">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-slate-900">
           Product Management Tools
         </h2>
 
@@ -94,18 +90,17 @@ export default function ProductModules({
         </p>
       </div>
 
-      {/* Modules */}
+      {/* Module Cards */}
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
         {modules.map((module) => {
           const Icon = module.icon;
 
           return (
-            <button
+            <Link
               key={module.id}
-              type="button"
-              onClick={() => handleOpenModule(module.id)}
-              className="group text-left bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200"
+              href={module.route}
+              className="group block text-left bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 cursor-pointer"
             >
               {/* Icon + Arrow */}
 
@@ -131,10 +126,10 @@ export default function ProductModules({
               <p className="mt-2 text-sm leading-6 text-slate-500">
                 {module.description}
               </p>
-            </button>
+            </Link>
           );
         })}
       </div>
     </section>
   );
-} 
+}

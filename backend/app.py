@@ -14,6 +14,7 @@ from routes.prd import router as prd_router
 from routes.user_stories import router as user_stories_router
 from routes.prioritization import router as prioritization_router
 from routes.roadmap import router as roadmap_router
+from routes.strategy import router as strategy_router
 
 # ---------------------------------
 # FastAPI App
@@ -54,6 +55,8 @@ app.include_router(prd_router)
 app.include_router(user_stories_router)
 app.include_router(prioritization_router)
 app.include_router(roadmap_router)
+app.include_router(strategy_router)
+
 
 # ---------------------------------
 # Root Endpoint
