@@ -98,24 +98,25 @@ export default function TrendAnalysis() {
   }
 
 const priorityData = Object.entries(
-  dashboard.trends.priority_distribution ??
-    dashboard.priority_distribution
+  dashboard?.trends?.priority_distribution ??
+  dashboard?.priority_distribution ??
+  {}
 ).map(([name, value]) => ({
   name,
   value,
 }));
 
 const clusterData = Object.entries(
-  dashboard.trends.top_clusters
+  dashboard?.trends?.top_clusters ?? {}
 ).map(([clusterId, value]) => ({
   name:
-    dashboard.cluster_labels[clusterId] ??
+    dashboard?.cluster_labels?.[clusterId] ??
     `Cluster ${clusterId}`,
   value,
 }));
 
 const productData = Object.entries(
-  dashboard.trends.top_products
+  dashboard?.trends?.top_products ?? {}
 ).map(([name, value]) => ({
   name,
   value,

@@ -4,18 +4,33 @@ from services.storage import load_analysis
 router = APIRouter()
 
 
+# =========================================================
+# GET CLUSTER DETAILS
+# =========================================================
+
 @router.get("/cluster/{cluster_id}")
 def cluster_details(cluster_id: int):
 
     df, cluster_labels, trends, recommendations = load_analysis()
 
     if df is None:
-        return {"message": "No dataset analyzed yet."}
+        return {
+            "success": False,
+            "message": "No dataset analyzed yet."
+        }
 
+    # Filter selected cluster
     cluster_df = df[df["cluster"] == cluster_id]
 
     if cluster_df.empty:
-        return {"message": "Cluster not found"}
+        return {
+            "success": False,
+            "message": "Cluster not found"
+        }
+
+    # -----------------------------------------
+    # Priority distribution
+    # -----------------------------------------
 
     priority_counts = (
         cluster_df["priority"]
@@ -23,39 +38,92 @@ def cluster_details(cluster_id: int):
         .to_dict()
     )
 
+    # -----------------------------------------
+    # Get cluster theme/name
+    # -----------------------------------------
+
+    if "theme" in cluster_df.columns:
+        theme = str(cluster_df["theme"].iloc[0])
+    else:
+        theme = f"Cluster {cluster_id}"
+
+    # -----------------------------------------
+    # Build issue list
+    # -----------------------------------------
+
     issues = []
 
     for _, row in cluster_df.iterrows():
 
         issues.append({
 
-        "ticket_id": int(row["ticket_id"]),
+            "ticket_id": int(row["ticket_id"]),
 
-        "issue_description": row["issue_description"],
+            "issue_description": str(
+                row["issue_description"]
+            ),
 
-        "priority": row["priority"],
+            "priority": str(
+                row["priority"]
+            ),
 
-        "status": row["status"],
+            "status": str(
+                row["status"]
+            ),
 
-        "product": row["product"],
+            "product": str(
+                row["product"]
+            ),
 
-        "category": row["category"],
-        
-        "escalated": row["escalated"]
+            "category": str(
+                row["category"]
+            ),
 
-    })
+            "escalated": str(
+                row["escalated"]
+            )
+        })
+
+    # -----------------------------------------
+    # Return cluster details
+    # -----------------------------------------
 
     return {
+
+        "success": True,
+
         "cluster_id": cluster_id,
-        "theme": cluster_df["theme"].iloc[0],
-        "issue_count": int(len(cluster_df)),
+
+        "name": theme,
+
+        "theme": theme,
+
+        "issue_count": int(
+            len(cluster_df)
+        ),
+
         "priority_breakdown": {
-            "High": int(priority_counts.get("High", 0)),
-            "Medium": int(priority_counts.get("Medium", 0)),
-            "Low": int(priority_counts.get("Low", 0))
+
+            "High": int(
+                priority_counts.get("High", 0)
+            ),
+
+            "Medium": int(
+                priority_counts.get("Medium", 0)
+            ),
+
+            "Low": int(
+                priority_counts.get("Low", 0)
+            )
         },
+
         "issues": issues
     }
+
+
+# =========================================================
+# GET ALL CLUSTERS
+# =========================================================
 
 @router.get("/clusters")
 def get_clusters():
@@ -63,18 +131,134 @@ def get_clusters():
     df, cluster_labels, trends, recommendations = load_analysis()
 
     if df is None:
-        return {"message": "No dataset analyzed yet."}
+        return {
+            "success": False,
+            "message": "No dataset analyzed yet.",
+            "clusters": []
+        }
 
     clusters = []
 
-    for cluster_id, theme in cluster_labels.items():
+    # -----------------------------------------
+    # Get unique cluster IDs directly from
+    # the analyzed DataFrame
+    # -----------------------------------------
 
-        cluster_df = df[df["cluster"] == int(cluster_id)]
+    unique_clusters = sorted(
+        df["cluster"].dropna().unique()
+    )
+
+    for cluster_id in unique_clusters:
+
+        cluster_id = int(cluster_id)
+
+        cluster_df = df[
+            df["cluster"] == cluster_id
+        ]
+
+        if cluster_df.empty:
+            continue
+
+        # -----------------------------------------
+        # Get theme / cluster name
+        # -----------------------------------------
+
+        if "theme" in cluster_df.columns:
+            theme = str(
+                cluster_df["theme"].iloc[0]
+            )
+        else:
+            theme = f"Cluster {cluster_id}"
+
+        # -----------------------------------------
+        # Add cluster
+        # -----------------------------------------
 
         clusters.append({
-            "id": int(cluster_id),
+
+            "cluster_id": cluster_id,
+
+            "id": cluster_id,
+
+            "name": theme,
+
             "theme": theme,
-            "issue_count": int(len(cluster_df))
+
+            "feedback_count": int(
+                len(cluster_df)
+            ),
+
+            "issue_count": int(
+                len(cluster_df)
+            )
         })
 
-    return clusters
+    # -----------------------------------------
+    # Return clusters
+    # -----------------------------------------
+
+    return {
+
+        "success": True,
+
+        "clusters": clusters
+    }
+
+
+# =========================================================
+# GET CLUSTER NAMES
+# =========================================================
+
+@router.get("/clusters/names")
+def get_cluster_names():
+
+    df, cluster_labels, trends, recommendations = load_analysis()
+
+    if df is None:
+        return {
+            "success": False,
+            "message": "No dataset analyzed yet.",
+            "clusters": []
+        }
+
+    clusters = []
+
+    unique_clusters = sorted(
+        df["cluster"].dropna().unique()
+    )
+
+    for cluster_id in unique_clusters:
+
+        cluster_id = int(cluster_id)
+
+        cluster_df = df[
+            df["cluster"] == cluster_id
+        ]
+
+        if cluster_df.empty:
+            continue
+
+        if "theme" in cluster_df.columns:
+            theme = str(
+                cluster_df["theme"].iloc[0]
+            )
+        else:
+            theme = f"Cluster {cluster_id}"
+
+        clusters.append({
+
+            "cluster_id": cluster_id,
+
+            "name": theme,
+
+            "feedback_count": int(
+                len(cluster_df)
+            )
+        })
+
+    return {
+
+        "success": True,
+
+        "clusters": clusters
+    }

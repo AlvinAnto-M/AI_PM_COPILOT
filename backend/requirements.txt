@@ -12,3 +12,6 @@ seaborn
 openpyxl
 wordcloud
 joblib
+google-generativeai
+python-dotenv
+google-genai

@@ -7,4 +7,14 @@ const api = axios.create({
   },
 });
 
+// ---------------------------------------------
+// PRD Generator
+// ---------------------------------------------
+
+export async function generatePRD(): Promise<string> {
+  const response = await api.post("/prd/generate");
+
+  return response.data.prd;
+}
+
 export default api;
