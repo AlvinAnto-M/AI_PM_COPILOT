@@ -1,159 +1,267 @@
 # 🚀 AI Product Manager Copilot
 
-AI Product Manager Copilot is a web-based platform that helps Product Managers collect, organize, process, and manage customer feedback from multiple sources. The application provides a structured workflow for importing feedback, validating data, preprocessing text, categorizing customer feedback, and presenting meaningful insights through an interactive dashboard.
+<p align="center">
+  <strong>Turn scattered customer feedback into actionable product decisions.</strong>
+</p>
 
-The project is designed with a modular and scalable architecture, making it easy to extend with advanced analytics and intelligent features in the future.
+<p align="center">
+  AI-powered feedback management, analysis, prioritization, and product planning — all in one place.
+</p>
+
+<p align="center">
+
+![React](https://img.shields.io/badge/Frontend-React.js-61DAFB?style=for-the-badge\&logo=react\&logoColor=white)
+![FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=for-the-badge\&logo=fastapi\&logoColor=white)
+![MongoDB](https://img.shields.io/badge/Database-MongoDB-47A248?style=for-the-badge\&logo=mongodb\&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge\&logo=python\&logoColor=white)
+
+</p>
 
 ---
 
-## 📖 Overview
+## 🌟 Overview
 
-Managing customer feedback from multiple channels can be challenging and time-consuming. This project provides a centralized platform where product teams can upload, organize, and process customer feedback efficiently.
+**AI Product Manager Copilot** is a web-based platform designed to help Product Managers **collect, organize, process, analyze, and manage customer feedback** from multiple sources.
 
-The application follows a complete data pipeline that starts with file upload and ends with a structured dashboard displaying processed information.
+Instead of manually going through scattered feedback, the platform provides a structured workflow that transforms raw customer data into **categorized insights, prioritized feature requests, and actionable product intelligence**.
+
+### 🎯 The Goal
+
+> **From customer feedback → to product insights → to better product decisions.**
+
+The system is built using a **modular and scalable architecture**, allowing advanced AI capabilities and analytics to be added easily in the future.
 
 ---
 
-# ✨ Features
+# ✨ Key Features
+
+<table>
+<tr>
+<td width="50%">
 
 ### 👤 User Management
 
-- Secure User Authentication
-- Project Creation & Management
-- Protected Dashboard Access
+* 🔐 Secure authentication
+* 🏢 Project/workspace management
+* 🛡️ Protected dashboard access
+* 🔑 JWT-based authorization
 
-### 📁 File Upload
+</td>
+<td width="50%">
 
-Supports multiple file formats:
+### 📁 Multi-Format Upload
 
-- CSV
-- Excel
-- JSON
-- PDF
+Import customer data from:
+
+* 📄 CSV
+* 📊 Excel
+* 🗂️ JSON
+* 📕 PDF
+
+</td>
+</tr>
+
+<tr>
+<td>
 
 ### ✅ Data Validation
 
-Before processing, uploaded files are validated through:
+Uploaded files are checked for:
 
-- File Format Validation
-- Empty File Detection
-- Duplicate Upload Detection
-- Schema Validation
-- Data Integrity Check
+* File format validity
+* Empty files
+* Duplicate uploads
+* Schema consistency
+* Data integrity
 
-### 🧹 Data Cleaning & Preprocessing
+</td>
+<td>
 
-The uploaded data is processed using:
+### 🧹 Data Cleaning
 
-- Duplicate Removal
-- Missing Value Handling
-- Text Normalization
-- Special Character Removal
-- Tokenization
-- Stop-word Removal
-- Lemmatization
+Automated preprocessing includes:
 
-### 📂 Feedback Categorization
+* Duplicate removal
+* Missing-value handling
+* Text normalization
+* Special-character removal
+* Tokenization
+* Stop-word removal
+* Lemmatization
 
-Feedback is organized into categories such as:
+</td>
+</tr>
 
-- 🐞 Bug Reports
-- 💡 Feature Requests
-- 🎨 UI/UX
-- ⚡ Performance
-- 🔒 Security
-- 🎧 Support
-- 📌 Others
+<tr>
+<td>
 
-### 📊 Dashboard
+### 🏷️ Feedback Categorization
 
-Displays:
+Feedback can be organized into:
 
-- Upload Status
-- File Summary
-- Dataset Overview
-- Category Distribution
-- Project Statistics
+* 🐞 Bug Reports
+* 💡 Feature Requests
+* 🎨 UI/UX
+* ⚡ Performance
+* 🔒 Security
+* 🎧 Support
+* 📌 Others
+
+</td>
+<td>
+
+### 📊 Interactive Dashboard
+
+Visualize:
+
+* 📤 Upload status
+* 📁 File summaries
+* 📋 Dataset overview
+* 📊 Category distribution
+* 📈 Project statistics
+
+</td>
+</tr>
+</table>
+
+---
+
+# 🧠 Product Intelligence Workflow
+
+The platform is designed to evolve from a simple feedback management system into an **AI-powered Product Management Copilot**.
+
+```text
+                    👥 CUSTOMER FEEDBACK
+                           │
+                           ▼
+                  📥 DATA INGESTION
+                           │
+                           ▼
+                  ✅ DATA VALIDATION
+                           │
+                           ▼
+                🧹 DATA PREPROCESSING
+                           │
+                           ▼
+               🏷️ FEEDBACK CLASSIFICATION
+                           │
+                           ▼
+              🔗 REQUEST AGGREGATION
+                           │
+                           ▼
+                🎯 FEATURE PRIORITIZATION
+                           │
+                           ▼
+             🤖 AI PRODUCT ASSISTANT
+                           │
+             ┌─────────────┼─────────────┐
+             ▼             ▼             ▼
+          📄 PRDs      🗺️ ROADMAP     💡 INSIGHTS
+             │             │             │
+             └─────────────┼─────────────┘
+                           ▼
+                  📊 PRODUCT DASHBOARD
+```
 
 ---
 
 # 🏗️ System Architecture
 
-```
-                     Product Manager / User
-                               │
-                               ▼
-               React.js + Tailwind CSS Frontend
-                               │
-                         HTTP REST API
-                               │
-                               ▼
-                  FastAPI Backend (Python)
-                               │
-        ┌──────────────┬──────────────┬──────────
-        │              │              │         |
- Authentication   Project Mgmt     File Upload  |
-        │              │              │         |
-        _________________________________________        
-                       │
-                       ▼
-               Data Validation Layer
-                       │
-                       ▼
-         Data Cleaning & Preprocessing
-                       │
-                       ▼
-         Feedback Categorization Engine
-                       │
-                       ▼
-               MongoDB Atlas Database
-                       │
-                       ▼
-              Dashboard & Statistics
+```text
+                    👤 PRODUCT MANAGER
+                           │
+                           ▼
+              ┌─────────────────────────┐
+              │   React.js + Tailwind   │
+              │        Frontend         │
+              └────────────┬────────────┘
+                           │
+                     HTTP REST API
+                           │
+                           ▼
+              ┌─────────────────────────┐
+              │      FastAPI Backend    │
+              │         Python          │
+              └────────────┬────────────┘
+                           │
+          ┌────────────────┼────────────────┐
+          │                │                │
+          ▼                ▼                ▼
+   🔐 Authentication   📁 Project Mgmt   📤 File Upload
+          │                │                │
+          └────────────────┼────────────────┘
+                           │
+                           ▼
+              ┌─────────────────────────┐
+              │   ✅ Validation Layer   │
+              └────────────┬────────────┘
+                           │
+                           ▼
+              ┌─────────────────────────┐
+              │ 🧹 Preprocessing Layer  │
+              └────────────┬────────────┘
+                           │
+                           ▼
+              ┌─────────────────────────┐
+              │ 🏷️ Categorization Engine│
+              └────────────┬────────────┘
+                           │
+                           ▼
+              ┌─────────────────────────┐
+              │     🍃 MongoDB Atlas    │
+              └────────────┬────────────┘
+                           │
+                           ▼
+              ┌─────────────────────────┐
+              │   📊 Dashboard & Stats  │
+              └─────────────────────────┘
 ```
 
 ---
 
 # 🔄 Data Processing Pipeline
 
-```
-Customer Feedback
+```text
+📥 Customer Feedback
         │
         ▼
-Upload Files
-(CSV | Excel | JSON | PDF)
+📁 Upload Files
+CSV | Excel | JSON | PDF
         │
         ▼
-Validate Uploaded Data
+✅ Validate Data
         │
         ▼
-Clean & Preprocess Data
+🧹 Clean & Preprocess
         │
         ▼
-Categorize Feedback
+🏷️ Categorize Feedback
         │
         ▼
-Store Raw & Processed Data
+💾 Store Raw + Processed Data
         │
         ▼
-Dashboard & Statistics
+📊 Generate Insights
+        │
+        ▼
+🚀 Product Decisions
 ```
 
 ---
 
 # 🛠️ Technology Stack
 
-| Layer | Technology |
-|--------|------------|
-| **Frontend** | React.js, Tailwind CSS |
-| **Backend** | FastAPI (Python) |
-| **Database** | MongoDB Atlas |
-| **Authentication** | JWT |
-| **Data Processing** | Pandas, NumPy |
-| **Text Processing** | NLTK, spaCy |
-| **API Communication** | REST API |
-| **Version Control** | Git & GitHub |
-| **Deployment** | Vercel, Render/Railway |
+| Layer                  | Technologies             |
+| :--------------------- | :----------------------- |
+| 🎨 **Frontend**        | React.js, Tailwind CSS   |
+| ⚙️ **Backend**         | FastAPI, Python          |
+| 🍃 **Database**        | MongoDB Atlas            |
+| 🔐 **Authentication**  | JWT                      |
+| 📊 **Data Processing** | Pandas, NumPy            |
+| 🧠 **NLP**             | NLTK, spaCy              |
+| 🔗 **API**             | REST API                 |
+| 🌿 **Version Control** | Git, GitHub              |
+| ☁️ **Deployment**      | Vercel, Render / Railway |
 
 ---
 
@@ -162,7 +270,7 @@ Dashboard & Statistics
 ```text
 AI-Product-Manager-Copilot/
 │
-├── frontend/
+├── 🎨 frontend/
 │   ├── components/
 │   ├── pages/
 │   ├── services/
@@ -170,7 +278,7 @@ AI-Product-Manager-Copilot/
 │   ├── assets/
 │   └── App.jsx
 │
-├── backend/
+├── ⚙️ backend/
 │   ├── api/
 │   ├── authentication/
 │   ├── preprocessing/
@@ -180,10 +288,10 @@ AI-Product-Manager-Copilot/
 │   ├── database/
 │   └── main.py
 │
-├── docs/
-├── datasets/
-├── README.md
-└── requirements.txt
+├── 📚 docs/
+├── 📊 datasets/
+├── 📄 README.md
+└── 📦 requirements.txt
 ```
 
 ---
@@ -210,9 +318,9 @@ npm install
 npm run dev
 ```
 
-Frontend will run at:
+The frontend will be available at:
 
-```
+```text
 http://localhost:5173
 ```
 
@@ -220,21 +328,19 @@ http://localhost:5173
 
 ## 3️⃣ Backend Setup
 
-Create a virtual environment:
+Create a Python virtual environment:
 
 ```bash
 python -m venv venv
 ```
 
-Activate it:
-
-### Windows
+### 🪟 Windows
 
 ```bash
 venv\Scripts\activate
 ```
 
-### Linux / macOS
+### 🐧 Linux / macOS
 
 ```bash
 source venv/bin/activate
@@ -246,23 +352,23 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Run the backend:
+Start the backend:
 
 ```bash
 uvicorn main:app --reload
 ```
 
-Backend will run at:
+Backend:
 
-```
+```text
 http://localhost:8000
 ```
 
 ---
 
-## 4️⃣ Configure Environment Variables
+## 4️⃣ 🔐 Environment Variables
 
-Create a `.env` file inside the backend folder.
+Create a `.env` file inside the `backend` directory:
 
 ```env
 MONGODB_URI=your_mongodb_connection_string
@@ -272,175 +378,232 @@ DATABASE_NAME=ai_product_manager
 JWT_SECRET=your_secret_key
 ```
 
+> ⚠️ Never commit your `.env` file or expose secret credentials publicly.
+
 ---
 
-## 5️⃣ Connect MongoDB Atlas
+## 5️⃣ 🍃 MongoDB Atlas Setup
 
-- Create a MongoDB Atlas cluster
-- Create a database
-- Update the connection string in `.env`
+1. Create a MongoDB Atlas cluster
+2. Create your database
+3. Configure database access
+4. Copy your MongoDB connection string
+5. Add it to the `.env` file
 
 ---
 
 # 🚀 Deployment
 
-### Frontend
+### 🎨 Frontend — Vercel
 
-Deploy using **Vercel**
+Build the application:
 
 ```bash
 npm run build
 ```
 
----
+Deploy the frontend using **Vercel**.
 
-### Backend
+### ⚙️ Backend — Render / Railway
 
-Deploy using:
-
-- Render
-- Railway
-
-Run using:
+Start the application using:
 
 ```bash
 uvicorn main:app
 ```
 
----
+### 🍃 Database — MongoDB Atlas
 
-### Database
-
-Deploy using:
-
-- MongoDB Atlas
+The application uses **MongoDB Atlas** as the cloud database.
 
 ---
 
 # 📋 Requirements
 
-## Frontend
+### 🎨 Frontend
 
-- React.js
-- Tailwind CSS
-- React Router
-- Axios
+* React.js
+* Tailwind CSS
+* React Router
+* Axios
 
-## Backend
+### ⚙️ Backend
 
-- Python 3.10+
-- FastAPI
-- Uvicorn
-- Pydantic
-- Python-dotenv
+* Python 3.10+
+* FastAPI
+* Uvicorn
+* Pydantic
+* Python-dotenv
 
-## Data Processing
+### 🧠 Data & NLP
 
-- Pandas
-- NumPy
-- NLTK
-- spaCy
+* Pandas
+* NumPy
+* NLTK
+* spaCy
 
-## Database
+### 🗄️ Database
 
-- MongoDB Atlas
+* MongoDB Atlas
 
-## Development Tools
+### 🧰 Development
 
-- Git
-- GitHub
-- VS Code
+* Git
+* GitHub
+* VS Code
 
 ---
 
-# 🚀 Future Enhancements
+# 🗺️ Roadmap & Future Enhancements
 
-- Sentiment Analysis
-- Feedback Summarization
-- Keyword Extraction
-- Named Entity Recognition
-- Feature Prioritization
-- Recommendation Engine
-- Product Analytics Dashboard
-- Executive Reports
-- Product Roadmap Generation
-- Jira Integration
-- GitHub Issues Integration
+The platform can be extended with advanced AI-powered product intelligence.
+
+| Feature                         | Description                              |
+| :------------------------------ | :--------------------------------------- |
+| 😊 **Sentiment Analysis**       | Understand customer sentiment            |
+| 📝 **Feedback Summarization**   | Generate concise feedback summaries      |
+| 🔑 **Keyword Extraction**       | Identify recurring topics                |
+| 🧠 **Named Entity Recognition** | Extract important entities               |
+| 🎯 **Feature Prioritization**   | Rank features using demand & impact      |
+| 🤖 **Recommendation Engine**    | Generate product recommendations         |
+| 📊 **Advanced Analytics**       | Deeper product insights                  |
+| 📄 **Executive Reports**        | Generate stakeholder-ready reports       |
+| 🗺️ **Roadmap Generation**      | Convert priorities into roadmaps         |
+| 🔗 **Jira Integration**         | Connect product decisions to development |
+| 🐙 **GitHub Integration**       | Connect feedback with GitHub Issues      |
+
+---
+
+# 👤 User Stories
+
+## 🔐 1. Secure Workspace Access
+
+**As a Product Manager**, I want to securely log in and access my team's workspace so that my product data stays private and organized by project.
+
+**Acceptance Criteria**
+
+* Only authenticated users can access their workspace data.
+
+---
+
+## 📥 2. Multi-Source Data Ingestion
+
+**As a Product Manager**, I want to import customer feedback, support tickets, and feature requests from multiple sources into one system so that I don't have to manually consolidate data from scattered channels.
+
+**Acceptance Criteria**
+
+* System successfully imports and stores data from at least two different source formats.
+
+---
+
+## 🏷️ 3. Automated Feedback Classification
+
+**As a Product Manager**, I want incoming feedback and tickets to be automatically categorized by theme and sentiment so that I can quickly identify recurring pain points.
+
+**Acceptance Criteria**
+
+* Every imported entry receives a theme and sentiment label.
+
+---
+
+## 🔗 4. Feature Request Aggregation
+
+**As a Product Manager**, I want similar feature requests from different sources grouped together so that I can understand actual demand instead of seeing scattered duplicate requests.
+
+**Acceptance Criteria**
+
+* Similar requests are grouped into a single cluster.
+* Each cluster displays the request count.
+
+---
+
+## 🎯 5. AI-Driven Prioritization
+
+**As a Product Manager**, I want the system to score and rank features by business impact and user demand so that I can make faster, data-backed prioritization decisions.
+
+**Acceptance Criteria**
+
+* Each feature receives a priority score.
+* Features are displayed in ranked order.
+
+---
+
+## 📄 6. Automated PRD & User Story Generation
+
+**As a Product Manager**, I want the assistant to draft PRDs and user stories from prioritized feature data so that I can accelerate documentation and reduce manual writing effort.
+
+**Acceptance Criteria**
+
+* A draft PRD with user stories can be generated for any selected feature.
+
+---
+
+## 🗺️ 7. Roadmap Visualization
+
+**As a Product Manager**, I want prioritized features displayed on a visual roadmap timeline so that I can communicate plans clearly with stakeholders and engineering teams.
+
+**Acceptance Criteria**
+
+* Prioritized features appear correctly on a timeline.
+
+---
+
+## 💬 8. Conversational Insights Assistant
+
+**As a Product Manager**, I want to ask the copilot natural-language questions about my product data so that I can get instant answers without manually digging through dashboards or reports.
+
+**Acceptance Criteria**
+
+* The assistant returns a relevant answer to a natural-language query.
 
 ---
 
 # 🤝 Contributing
 
-Contributions are welcome!
+Contributions are welcome! 🎉
 
-1. Fork the repository
-2. Create a feature branch
+### 1️⃣ Fork the repository
+
+### 2️⃣ Create a feature branch
 
 ```bash
 git checkout -b feature/feature-name
 ```
 
-3. Commit your changes
+### 3️⃣ Make your changes
+
+### 4️⃣ Commit your changes
 
 ```bash
 git commit -m "Add feature"
 ```
 
-4. Push to GitHub
+### 5️⃣ Push your branch
 
 ```bash
 git push origin feature/feature-name
 ```
 
-5. Open a Pull Request
+### 6️⃣ Open a Pull Request 🚀
 
 ---
 
 # 🙌 Acknowledgments
-The technologies that make this project possible:
 
-- React.js
-- Tailwind CSS
-- FastAPI
-- MongoDB Atlas
-- Pandas
-- NumPy
-- NLTK
-- spaCy
-- Git & GitHub
+Built with the help of amazing open-source technologies:
+
+<p align="center">
+
+**React.js** • **Tailwind CSS** • **FastAPI** • **MongoDB Atlas** • **Pandas** • **NumPy** • **NLTK** • **spaCy** • **Git** • **GitHub**
+
+</p>
 
 ---
 
-# User Stories
+<p align="center">
 
-1. Secure Workspace Access
-As a Product Manager, I want to securely log in and access my team's workspace, so that my product data stays private and organized by project.
-Acceptance Criteria: Only authenticated users can access their own workspace data.
+### 🚀 Built to help Product Managers build better products, faster.
 
-2. Multi-Source Data Ingestion
-As a Product Manager, I want to import customer feedback, support tickets, and feature requests from multiple sources into one system, so that I don't have to manually consolidate data from scattered channels.
-Acceptance Criteria: System successfully imports and stores data from at least two different source formats.
+⭐ **If you find this project useful, consider giving it a star!**
 
-3. Automated Feedback Classification
-As a Product Manager, I want incoming feedback and tickets to be automatically categorized by theme and sentiment, so that I can quickly spot recurring pain points without reading every entry.
-Acceptance Criteria: Every imported entry is auto-tagged with a theme and sentiment label.
-
-4. Feature Request Aggregation
-As a Product Manager, I want similar feature requests from different sources grouped together, so that I can see true demand for a feature instead of scattered duplicate requests.
-Acceptance Criteria: Similar requests are grouped into a single cluster with a request count.
-
-5. AI-Driven Prioritization
-As a Product Manager, I want the system to score and rank features by business impact and user demand, so that I can make faster, data-backed prioritization decisions.
-Acceptance Criteria: Each feature is assigned a priority score and displayed in ranked order.
-
-6. Automated PRD & User Story Generation
-As a Product Manager, I want the assistant to draft PRDs and user stories from prioritized feature data, so that I can accelerate documentation and reduce manual writing effort.
-Acceptance Criteria: A draft PRD with user stories is generated for any selected feature.
-
-7. Roadmap Visualization
-As a Product Manager, I want prioritized features displayed on a visual roadmap timeline, so that I can communicate plans clearly to stakeholders and engineering teams.
-Acceptance Criteria: Prioritized features appear correctly placed on a timeline view.
-
-8. Conversational Insights Assistant
-As a Product Manager, I want to ask the copilot natural-language questions about my product data, so that I can get instant answers without manually digging through dashboards or reports.
-Acceptance Criteria: Assistant returns a relevant answer for a natural-language query.
+</p>
