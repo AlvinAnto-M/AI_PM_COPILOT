@@ -1,3 +1,43 @@
+# Python virtual environments
+venv/
+.venv/
+**/venv/
+**/.venv/
+
+# Python cache
+__pycache__/
+**/__pycache__/
+*.py[cod]
+
+# Node.js
+node_modules/
+**/node_modules/
+
+# Next.js
+.next/
+**/.next/
+
+# Vercel
+.vercel/
+**/.vercel/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+
+
+
+
+
 # Python virtual environment
 venv/
 
@@ -32,3 +72,54 @@ backend/node_modules/
 
 # Backend Node.js dependencies
 backend/node_modules/
+# =========================
+# Python
+# =========================
+venv/
+.venv/
+**/venv/
+**/.venv/
+
+__pycache__/
+**/__pycache__/
+*.py[cod]
+
+# =========================
+# Python environment files
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# Node / Next.js
+# =========================
+node_modules/
+**/node_modules/
+
+.next/
+**/.next/
+
+.vercel/
+**/.vercel/
+
+# =========================
+# Development caches
+# =========================
+.cache/
+**/.cache/
+
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# IDE
+# =========================
+.vscode/
